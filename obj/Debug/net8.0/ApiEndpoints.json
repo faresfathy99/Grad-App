@@ -1,16 +1,16 @@
 [
   {
     "ContainingType": "MizanGraduationProject.Controllers.AuthController",
-    "Method": "ForgetPassword",
-    "RelativePath": "api/auth/forget-password",
+    "Method": "DisableTwoFactorAuthenticationAsync",
+    "RelativePath": "api/auth/disable-2fa",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "enableDisable2Fa",
+        "Type": "MizanGraduationProject.Data.DTOs.EnableDisable2fa",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -37,21 +37,16 @@
   },
   {
     "ContainingType": "MizanGraduationProject.Controllers.AuthController",
-    "Method": "Login",
-    "RelativePath": "api/auth/login",
+    "Method": "EnableTwoFactorAuthenticationAsync",
+    "RelativePath": "api/auth/enable-2fa",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Password",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "enableDisable2Fa",
+        "Type": "MizanGraduationProject.Data.DTOs.EnableDisable2fa",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -73,6 +68,141 @@
           "text/json"
         ],
         "StatusCode": 406
+      }
+    ]
+  },
+  {
+    "ContainingType": "MizanGraduationProject.Controllers.AuthController",
+    "Method": "ForgetPassword",
+    "RelativePath": "api/auth/forget-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "forgetPasswordDto",
+        "Type": "MizanGraduationProject.Data.DTOs.ForgetPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 406
+      }
+    ]
+  },
+  {
+    "ContainingType": "MizanGraduationProject.Controllers.AuthController",
+    "Method": "GetNewVerifyEmailCode",
+    "RelativePath": "api/auth/get-new-verify-email-code",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newVerifyEmailCodeDTO",
+        "Type": "MizanGraduationProject.Data.DTOs.NewVerifyEmailCodeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "MizanGraduationProject.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "MizanGraduationProject.Data.DTOs.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 406
+      }
+    ]
+  },
+  {
+    "ContainingType": "MizanGraduationProject.Controllers.AuthController",
+    "Method": "Login2fa",
+    "RelativePath": "api/auth/login-2fa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login2FaDTO",
+        "Type": "MizanGraduationProject.Data.DTOs.Login2faDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       }
     ]
   },
@@ -95,29 +225,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "FirstName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "LastName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PhoneNumber",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Password",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "registerDto",
+        "Type": "MizanGraduationProject.Data.DTOs.RegisterDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -173,19 +283,68 @@
     "ContainingType": "MizanGraduationProject.Controllers.AuthController",
     "Method": "VerifyEmail",
     "RelativePath": "api/auth/verify-email",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "verifyEmailDTO",
+        "Type": "MizanGraduationProject.Data.DTOs.VerifyEmailDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
       },
       {
-        "Name": "Token",
-        "Type": "System.String",
-        "IsRequired": false
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "MizanGraduationProject.Controllers.FilterController",
+    "Method": "GetNewVerifyEmailCode",
+    "RelativePath": "api/Filter/filter-lawyers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "filterLawyersDTO",
+        "Type": "MizanGraduationProject.Data.DTOs.FilterLawyersDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "MizanGraduationProject.Controllers.LawyerController",
+    "Method": "GetNewVerifyEmailCode",
+    "RelativePath": "api/Lawyer/update-lawyer",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lawyerDTO",
+        "Type": "MizanGraduationProject.Data.DTOs.LawyerDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -235,6 +394,66 @@
     "ContainingType": "MizanGraduationProject.Controllers.LocationsController",
     "Method": "GetLocationsAsync",
     "RelativePath": "api/Locations/get-locations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "MizanGraduationProject.Controllers.SpecializationController",
+    "Method": "FillLocationsAsync",
+    "RelativePath": "api/Specialization/fill-specializations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
+      }
+    ]
+  },
+  {
+    "ContainingType": "MizanGraduationProject.Controllers.SpecializationController",
+    "Method": "GetLocationsAsync",
+    "RelativePath": "api/Specialization/get-specializations",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
